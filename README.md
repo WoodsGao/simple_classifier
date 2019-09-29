@@ -1,2 +1,3 @@
-# hog_svm_classifier
-基于OpenCV3的HOG特征SVM分类器
+# simple_classifier
+
+基于OpenCV3的HOG特征分类器
