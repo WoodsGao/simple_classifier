@@ -5,6 +5,7 @@
 *.yaml
 *.yml
 data/
+cv_utils/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
