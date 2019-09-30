@@ -6,7 +6,6 @@ from cv_utils.utils import *
 from tqdm import tqdm
 
 
-
 def train_svm(train_dir, val_dir, C=1e-3, gamma=1, kernel=cv2.ml.SVM_LINEAR):
     svm = cv2.ml.SVM_create()
     svm.setType(cv2.ml.SVM_C_SVC)
@@ -35,7 +34,7 @@ def train_svm(train_dir, val_dir, C=1e-3, gamma=1, kernel=cv2.ml.SVM_LINEAR):
         print(i, tp/len(pred_c))
     tp = np.sum(pred == targets)
     print(tp/len(pred))
-    return svm
+    svm.save('svm.yaml')
 
 
 if __name__ == "__main__":
@@ -45,4 +44,3 @@ if __name__ == "__main__":
     #     for g in range(-5,5):
     #         svm = train_svm(train_dir, val_dir, 10**c, 10**g, cv2.ml.SVM_RBF)
     svm = train_svm(train_dir, val_dir, 10, 0.01, cv2.ml.SVM_LINEAR)
-    svm.save('svm.yaml')

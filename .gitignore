@@ -4,6 +4,8 @@
 *.xml
 *.yaml
 *.yml
+*.pt
+*.pth
 data/
 cv_utils/
 # Byte-compiled / optimized / DLL files
