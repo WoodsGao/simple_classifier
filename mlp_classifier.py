@@ -55,7 +55,7 @@ def train_mlp(train_dir, val_dir):
                                                 )
     val_inputs = torch.from_numpy(val_inputs).to(device)
     val_targets = torch.from_numpy(val_targets).to(device)
-    model = MLP([train_inputs.size(1), 10, 1000,
+    model = MLP([train_inputs.size(1), 100, 1000,
                  int(max(train_targets.max(), val_targets.max()))+1])
     model.to(device)
     criterion = nn.CrossEntropyLoss()
@@ -77,7 +77,8 @@ def train_mlp(train_dir, val_dir):
             outputs = model(val_inputs)
             loss = criterion(outputs, val_targets)
             val_loss = loss.item()
-            val_acc = float((outputs.max(1)[1] == val_targets).sum()) / val_targets.size(0)
+            val_acc = float(
+                (outputs.max(1)[1] == val_targets).sum()) / val_targets.size(0)
         state_dict = {
             'model': model.state_dict(),
             'acc': val_acc,
@@ -95,7 +96,4 @@ def train_mlp(train_dir, val_dir):
 if __name__ == "__main__":
     train_dir = 'data/road_mark/train'
     val_dir = 'data/road_mark/val'
-    # for c in range(-5,5):
-    #     for g in range(-5,5):
-    #         svm = train_svm(train_dir, val_dir, 10**c, 10**g, cv2.ml.SVM_RBF)
     train_mlp(train_dir, val_dir)
